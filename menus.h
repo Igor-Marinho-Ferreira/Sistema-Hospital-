@@ -14,7 +14,7 @@ void SelecionarMenuPrincipal(){
         gotoxy(26,8);
         printf("2 - Funcionarios");
         gotoxy(26,9);
-        printf("3 - Sem ideias");//Talvez algo relacionado a Agendamentos
+        printf("3 - Agenda");//Talvez algo relacionado a Agendamentos
         gotoxy(26,10);
         printf("4 - Consultar Prontuarios");
         gotoxy(26,11);
