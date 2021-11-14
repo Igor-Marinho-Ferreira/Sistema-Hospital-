@@ -27,7 +27,7 @@ void SelecionarMenuPrincipal(){
         switch (Opcao){
             case 0:
                 system("cls");
-                gotoxy(20,21);
+                gotoxy(0,0);
                 printf("ENCERRADO!");
                 system("pause > NULL");
                 break;
@@ -41,7 +41,7 @@ void SelecionarMenuPrincipal(){
             case 4:
                 break;
         }        
-    }while (Opcao ==0);
+    }while (Opcao != 0);
 }
 
 void menuPacientes()
@@ -82,7 +82,7 @@ void menuPacientes()
             break;
         }
     }
-    while (opcao ==0);
+    while (opcao !=0);
 }
 
 
