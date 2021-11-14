@@ -9,8 +9,6 @@ struct paciente
     char idade[15];
     char cep[15];
     char email[100];
-    char comorbidades[100];
-
 };
 
 void CadastrarPaciente(){
