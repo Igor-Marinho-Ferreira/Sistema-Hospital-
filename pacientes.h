@@ -111,6 +111,7 @@ void RemoverPacientes(){
         while (fread(&paciente,sizeof(PACIENTE),1,arq)==1)
         {
             
+            
         }
         
     }
