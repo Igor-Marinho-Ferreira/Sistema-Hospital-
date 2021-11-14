@@ -34,7 +34,6 @@ void SelecionarMenuPrincipal(){
             case 1:
                 menuPacientes();
             case 2:
-                menuPacientes();
                 break;
             case 3:
                 break;
@@ -65,16 +64,16 @@ void menuPacientes()
 
         gotoxy(24,20);
         printf("Selecione qual o tipo de operacao deseja realizar: ");
-        scanf("%d",opcao);
-
         scanf("%d",&opcao);
+
         switch (opcao)
         {
         case 0:
+            system("cls");
+            sleep(1);
             break;
         case 1:
-            break;
-
+            CadastrarPaciente();
         case 2:
             break;
 
