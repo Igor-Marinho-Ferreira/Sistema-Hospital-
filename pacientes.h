@@ -5,7 +5,8 @@ typedef struct paciente PACIENTE;
 struct paciente
 {
     char nome[50];
-    char telefone[15];
+    char telefone[120];
+    char idade[15];
     char cep[15];
     char email[100];
     char comorbidades[100];
@@ -42,26 +43,46 @@ void CadastrarPaciente(){
             printf("Telefone: ");
             gotoxy(26,12);
             printf("Email: ");
-            gotoxy(26,12);
 
+            gotoxy(32,7);
             fflush(stdin);
             pegaLetras(paciente.nome);
             if (strcmp(paciente.nome,"")==0)break; 
-            gotoxy(30,13);
+
+            gotoxy(33,8);
+            fflush(stdin);
+            pegaDigito(paciente.idade);
+            if (strcmp(paciente.idade,"")==0) break; 
+
+            gotoxy(31,10);
+            fflush(stdin);
+            pegaDigito(paciente.cep);
+            if (strcmp(paciente.cep,"")==0) break; 
+
+            gotoxy(37,11);
+            fflush(stdin);
+            pegaDigito(paciente.telefone);
+            if (strcmp(paciente.telefone,"")==0) break; 
+
+            gotoxy(33,12);
+            fflush(stdin);
+            pegaEmail(paciente.email);
+            if (strcmp(paciente.email,"")==0) break; 
         {
             fwrite(&paciente, sizeof(PACIENTE),1,arquivo);
             gotoxy(30,20);
             printf(" ---- CADASTRADO COM SUCESSO! DESEJA CONTINUAR CADASTRANDO ? ----- ");
-            gotoxy(30,20);
+            gotoxy(30,21);
             printf("      0 = NAO      ");
-            gotoxy(30,20);
+            gotoxy(30,22);
             printf("      1 = SIM      ");
-            gotoxy(30,20);        
+            gotoxy(30,23);        
         }
         fflush(stdin);
         scanf("%d",&opcao);
+        system("cls");
     }
     while(opcao != 0);
-    fclose(arquivo); //Cadastro conclu�do, feche o arquivo
+    fclose(arquivo); 
 }
 #endif
