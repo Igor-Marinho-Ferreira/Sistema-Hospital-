@@ -1,11 +1,12 @@
 #ifndef PACIENTES_H_INCLUDED
 #define PACIENTES_H_INCLUDED
+
 typedef struct paciente PACIENTE;
 struct paciente
 {
     char nome[50];
-    char telefone [15];
-    char cep    [15];
+    char telefone[15];
+    char cep[15];
     char email[100];
     char comorbidades[100];
 
@@ -17,7 +18,7 @@ void CadastrarPaciente(){
     FILE* arquivo;
 
 
-    arquivo = fopen("pacientes.bin","ab");  // escrita e bin�rio
+    arquivo = fopen("pacientes.bin","ab");  // escrita e binario
     if(arquivo == NULL)
     {
         printf("Problema ao tentar abrir o arquivo. \n");
@@ -45,7 +46,7 @@ void CadastrarPaciente(){
 
             fflush(stdin);
             pegaLetras(paciente.nome);
-            if (strcmp(paciente.nome,"")==0) break; // se n�o digitar nada ent�o saia
+            if (strcmp(paciente.nome,"")==0)break; 
             gotoxy(30,13);
         {
             fwrite(&paciente, sizeof(PACIENTE),1,arquivo);
