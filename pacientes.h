@@ -8,7 +8,9 @@ struct paciente
     char telefone[120];
     char idade[15];
     char cep[15];
+    char cpf[11];
     char email[100];
+
 };
 
 void CadastrarPaciente(){
@@ -34,7 +36,7 @@ void CadastrarPaciente(){
             gotoxy(26,8);
             printf("Idade: ");
             gotoxy(26,9);
-            printf("3 - Sem ideias");
+            printf("CPF: ");
             gotoxy(26,10);
             printf("CEP: ");
             gotoxy(26,11);
@@ -51,6 +53,11 @@ void CadastrarPaciente(){
             fflush(stdin);
             pegaDigito(paciente.idade);
             if (strcmp(paciente.idade,"")==0) break; 
+
+            gotoxy(33,9);
+            fflush(stdin);
+            pegaDigito(paciente.cpf);
+            if (strcmp(paciente.cpf,"")==0) break; 
 
             gotoxy(31,10);
             fflush(stdin);
@@ -82,5 +89,30 @@ void CadastrarPaciente(){
     }
     while(opcao != 0);
     fclose(arquivo); 
+}
+
+void RemoverPacientes(){
+    FILE* arq;
+    FILE* temp;
+    PACIENTE paciente;
+    char cpf[11];
+    arq = fopen("pacientes.bin","rb"); //abrir em modo rb leitura binaria
+    temp = fopen("tmp_pct.bin","wb"); //abrir em modo wb ele limpa e grava binario
+    system("cls");
+
+    if(arq==NULL&&temp==NULL)
+    {
+        printf("<ERRO!> Problema na abertura do arquivo!\n");
+        getch();
+    }else{
+        fflush(stdin);
+        printf("Digite o CPF do paciente a deletar: ");
+        gets(cpf);
+        while (fread(&paciente,sizeof(PACIENTE),1,arq)==1)
+        {
+            
+        }
+        
+    }
 }
 #endif
