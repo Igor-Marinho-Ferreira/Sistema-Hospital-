@@ -8,7 +8,7 @@ struct paciente
     char telefone[120];
     char idade[15];
     char cep[15];
-    char cpf[11];
+    char cpf[13];
     char email[100];
 
 };
@@ -95,7 +95,7 @@ void RemoverPacientes(){
     FILE* arq;
     FILE* temp;
     PACIENTE paciente;
-    char cpf[11];
+    char cpf[13];
     arq = fopen("pacientes.bin","rb"); //abrir em modo rb leitura binaria
     temp = fopen("tmp_pct.bin","wb"); //abrir em modo wb ele limpa e grava binario
     system("cls");
@@ -110,10 +110,44 @@ void RemoverPacientes(){
         gets(cpf);
         while (fread(&paciente,sizeof(PACIENTE),1,arq)==1)
         {
-            
-            
+            if(strcmp(cpf,paciente.cpf)==0)
+            {
+                gotoxy(0,8);
+                printf("Nome: %s\n",paciente.nome);
+                gotoxy(0,9);
+                printf("CPF: %s\n",paciente.cpf);
+                gotoxy(0,10);
+                printf("-------------------------------------------------\n");
+            }
+            else
+            {
+                fwrite(&paciente,sizeof(PACIENTE),1,temp);//gravando os dados no arquivo temp
+            }            
         }
-        
+        fclose(arq);//fechar o arq
+        fclose(temp);//fechar o temp
+        fflush(stdin);
+        gotoxy(0,15);
+        printf("Deseja deletar (s/n)? ");
+        if(getche()=='s')
+        {
+            if(remove("pacientes.bin")==0&&rename("tmp_pct.bin","pacientes.bin")==0) //verifica se as operacoes foram realizadas com sucesso!
+            {
+                printf("\nOperacao realizada com sucesso!");
+                system("pause > null"); 
+                system("cls");
+            }
+            else
+            {
+                remove("tmp_pct.bin");//remover o arquivo tmp se a condicao foi "n" na hora de deletar
+                printf("\nPaciente nao foi removido!");
+                system("pause > null");  
+                system("cls");
+            }
+        }
+        fclose(temp);
+        fclose(arq);
+        getch();
     }
 }
 #endif

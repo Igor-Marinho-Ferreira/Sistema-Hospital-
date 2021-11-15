@@ -74,9 +74,10 @@ void menuPacientes()
             break;
         case 1:
             CadastrarPaciente();
-        case 2:
             break;
-
+        case 2:
+            RemoverPacientes();
+            break;
         case 3:
             break;
         }
