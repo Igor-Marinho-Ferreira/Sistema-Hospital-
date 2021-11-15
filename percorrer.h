@@ -15,9 +15,9 @@ void pegaLetras(char *letras)
         c = getch(); // pega o caractere digitado pelo usuario
         if(isalpha(c)!=0 || c==32)
         {
-            letras[i] = c; //armazena no vetor
+            letras[i] = c; 
             i++;
-            printf("%c",c); //exibe na tela o que foi digitado
+            printf("%c",c); 
         }
         else if (c==8&&i) // se for pressionado backspace e ouver caracteres ja digitados
         {
@@ -26,7 +26,7 @@ void pegaLetras(char *letras)
             printf("\b \b");  // o caractere digitado apagado da tela
         }
     }
-    while (c!=13)  ;   //executa o loop ate que seja pressionado ENTER
+    while (c!=13)  ;   
      letras[i] ='\0';
 }
 
