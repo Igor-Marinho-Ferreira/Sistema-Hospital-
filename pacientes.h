@@ -22,7 +22,7 @@ void CadastrarPaciente(){
     arquivo = fopen("pacientes.bin","ab");  // escrita e binario
     if(arquivo == NULL)
     {
-        printf("Problema ao tentar abrir o arquivo. \n");
+        printf("<ERRO!> Problema na abertura do arquivo!\n");
 
     }else
         do{
@@ -135,19 +135,50 @@ void RemoverPacientes(){
             {
                 printf("\nOperacao realizada com sucesso!");
                 system("pause > null"); 
-                system("cls");
             }
             else
             {
                 remove("tmp_pct.bin");//remover o arquivo tmp se a condicao foi "n" na hora de deletar
                 printf("\nPaciente nao foi removido!");
                 system("pause > null");  
-                system("cls");
             }
         }
         fclose(temp);
         fclose(arq);
         getch();
+    }
+}
+void ListarPacientes(){
+    PACIENTE paciente;
+    int opcao,x;
+    FILE* arquivo;
+
+    char cpf[13];   
+    system("cls");
+
+    arquivo = fopen("pacientes.bin","rb");  // leitura 
+    if(arquivo == NULL){
+        printf("<ERRO!> Problema na abertura do arquivo!\n");
+    }else{
+        fflush(stdin);
+        printf("Digite o CPF do paciente que deseja procurar: ");
+        gets(cpf);
+        while(fread(&paciente, sizeof(PACIENTE),1,arquivo)==1){
+            if(strcmp(cpf,paciente.cpf)==0)
+            {
+                gotoxy(0,8);
+                printf("Nome: %s\n",paciente.nome);
+                gotoxy(0,9);
+                printf("Idade: %s\n",paciente.idade);
+                gotoxy(0,10);
+                printf("CPF: %s\n",paciente.cpf);
+                gotoxy(0,11);
+                printf("Telefone: %s\n",paciente.telefone);
+                printf("-------------------------------------------------\n");
+            }
+        }
+        fclose(arquivo);
+        system("pause > null");
     }
 }
 #endif

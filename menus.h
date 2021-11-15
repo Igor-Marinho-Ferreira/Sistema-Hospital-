@@ -58,8 +58,10 @@ void menuPacientes()
         gotoxy(26,6);
         printf(" 1 - Cadastrar Paciente");
         gotoxy(26,7);
-        printf(" 2 - Remover Paciente");
+        printf(" 2 - Procurar Paciente");
         gotoxy(26,8);
+        printf(" 3 - Remover Paciente");
+        gotoxy(26,9);
         printf(" 0 - Voltar");
 
         gotoxy(24,20);
@@ -76,9 +78,12 @@ void menuPacientes()
             CadastrarPaciente();
             break;
         case 2:
-            RemoverPacientes();
+            ListarPacientes();
+            system("cls");
             break;
         case 3:
+            RemoverPacientes();
+            system("cls");
             break;
         }
     }
