@@ -78,4 +78,26 @@ void pegaEmail(char *letras)
     while (c!=13)  ;  
      letras[i] ='\0';
 }
+void pegaSenha(char *senha){
+    char c ;
+    int i=0;
+    do
+    {
+        c = getch(); // pega o caractere digitado pelo usuario
+        if(isalpha(c)!=0 || c==32 || isdigit(c))
+        {
+            senha[i] = c; 
+            i++;
+            printf("*"); 
+        }
+        else if (c==8&&i) 
+        {
+            senha[i] ='\0'; 
+            i--; 
+            printf("\b \b"); 
+        }
+    }
+    while (c!=13)  ;   
+    senha[i] ='\0';    
+}
 #endif

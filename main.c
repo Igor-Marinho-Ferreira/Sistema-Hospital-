@@ -5,6 +5,7 @@
 #include "design.h"
 #include "pacientes.h"
 #include "percorrer.h"
+#include "funcionarios.h"
 
 
 int main(){
@@ -12,3 +13,4 @@ int main(){
     SelecionarMenuPrincipal();
     return 0;
 }
+
