@@ -62,9 +62,9 @@ void menuPacientes()
         printf(" 2 - Criar Prontuario");
         gotoxy(26,8);
         printf(" 3 - Procurar Paciente");
-        gotoxy(26,10);
+        gotoxy(26,9);
         printf(" 4 - Remover Paciente");
-        gotoxy(26,11);
+        gotoxy(26,10);
         printf(" 0 - Voltar");
 
         gotoxy(24,20);
@@ -81,10 +81,14 @@ void menuPacientes()
             CadastrarPaciente();
             break;
         case 2:
-            ListarPacientes();
+            CriarProntuario();
             system("cls");
             break;
         case 3:
+            ListarPacientes();
+            system("cls");
+            break;
+        case 4:
             RemoverPacientes();
             system("cls");
             break;

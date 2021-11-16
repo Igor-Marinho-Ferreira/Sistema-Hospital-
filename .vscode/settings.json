@@ -3,6 +3,7 @@
         "stdio.h": "c",
         "menus.h": "c",
         "string.h": "c",
-        "funcionarios.h": "c"
+        "funcionarios.h": "c",
+        "prontuario.h": "c"
     }
 }
