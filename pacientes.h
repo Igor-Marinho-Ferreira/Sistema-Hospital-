@@ -165,14 +165,18 @@ void RemoverPacientes(){
 }
 void ListarPacientes(){
     PACIENTE paciente;
+    PRONTUARIO prontuario;
     int opcao,x;
     FILE* arquivo;
+    FILE* arquivo1;
 
     char cpf[13];   
     system("cls");
 
-    arquivo = fopen("pacientes.bin","rb");  // leitura 
-    if(arquivo == NULL){
+    arquivo = fopen("pacientes.bin","rb");
+    arquivo1 = fopen("prontuario.bin","rb");  // leitura 
+
+    if(arquivo == NULL || arquivo1 == NULL){
         printf("<ERRO!> Problema na abertura do arquivo!\n");
     }else{
         fflush(stdin);
@@ -187,12 +191,33 @@ void ListarPacientes(){
                 printf("Idade: %s\n",paciente.idade);
                 gotoxy(0,10);
                 printf("CPF: %s\n",paciente.cpf);
-                printf("-------------------------------Prontuario-------------------------------\n");
-                ListarProntuario();
-                printf("------------------------------------------------------------------------\n");
             }
         }
         fclose(arquivo);
+        while(fread(&prontuario, sizeof(PRONTUARIO),1,arquivo1)==1){
+            if(strcmp(cpf,prontuario.cpf)==0){
+                printf("-------------------------------Prontuario-------------------------------\n");
+                gotoxy(0,12);
+                printf("Evolução medica diaria: %s\n",prontuario.evolucaom);
+                gotoxy(0,13);
+                printf("Evolução de enfermagem diaria: %s\n",prontuario.evolucaoe);
+                gotoxy(0,14);
+                printf("Exames: %s\n",prontuario.exames);
+                gotoxy(0,15);
+                printf("Raciocinio medico: %s\n",prontuario.raciocinio);
+                gotoxy(0,16);
+                printf("Hipoteses diagnosticas: %s\n",prontuario.hipoteses);
+                gotoxy(0,17);
+                printf("Diagnostico definitivo: %s\n",prontuario.diagnostico);
+                gotoxy(0,18);
+                printf("Prescriçoes medicas: %s\n",prontuario.prescricoes);
+                gotoxy(0,19);
+                printf("Resumo de alta: %s\n",prontuario.resumo);
+                gotoxy(0,20);
+                printf("------------------------------------------------------------------------\n");    
+            }
+        }
+        fclose(arquivo1);
         system("pause > null");
     }
 }
@@ -301,35 +326,5 @@ void CriarProntuario(){
     while(opcao != 0);
     fclose(arquivo);     
 }
-void ListarProntuario(){
-    PRONTUARIO prontuario;
-    PACIENTE paciente;
-    FILE* arquivo;
-    
-    char cpf[13];
-    arquivo = fopen("prontuario.bin","rb");  // leitura 
 
-    if(arquivo == NULL){
-        printf("<ERRO!> Problema na abertura do arquivo!\n");
-    }else if(strcmp(prontuario.cpf,paciente.cpf)==0){
-        gotoxy(0,12);
-        printf("Evolução medica diaria: %s\n",prontuario.evolucaom);
-        gotoxy(0,13);
-        printf("Evolução de enfermagem diaria: %s\n",prontuario.evolucaoe);
-        gotoxy(0,14);
-        printf("Exames: %s\n",prontuario.exames);
-        gotoxy(0,15);
-        printf("Raciocinio medico: %s\n",prontuario.raciocinio);
-        gotoxy(0,16);
-        printf("Hipoteses diagnosticas: %s\n",prontuario.hipoteses);
-        gotoxy(0,17);
-        printf("Diagnostico definitivo: %s\n",prontuario.diagnostico);
-        gotoxy(0,18);
-        printf("Prescriçoes medicas: %s\n",prontuario.prescricoes);
-        gotoxy(0,19);
-        printf("Resumo de alta: %s\n",prontuario.resumo);
-        gotoxy(0,20);
-    }
-    fclose(arquivo);
-}
 #endif
