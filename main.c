@@ -6,7 +6,7 @@
 #include "pacientes.h"
 #include "percorrer.h"
 #include "funcionarios.h"
-
+#include "agenda.h"
 
 int main(){
     ajustaJanela();
