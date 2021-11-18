@@ -189,6 +189,8 @@ void menuAgenda()
             system("cls");
             break;
         case 4:
+            RemoverAgenda();
+            system("cls");
             break;
         }
     }

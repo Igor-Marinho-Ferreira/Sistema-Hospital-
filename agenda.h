@@ -97,4 +97,62 @@ void ListarAgenda(){
         system("pause > null");
     }
 }
+
+void RemoverAgenda(){
+    AGENDA agenda;
+    FILE* temp;
+    FILE* arq;
+    char nome[40];
+
+    temp = fopen("tmp_pct.bin","wb");
+    arq = fopen("agenda.bin","rb");
+    system("cls");
+
+    if(arq==NULL&&temp==NULL){
+        printf("<ERRO!> Problema na abertura do arquivo!\n");
+        getch();
+    }else{
+        fflush(stdin);
+        printf("Digite o nome do paciente a deletar: ");
+        gets(nome);
+        while (fread(&agenda,sizeof(AGENDA),1,arq)==1)
+        {
+            if(strcmp(nome,agenda.nomepaciente)==0)
+            {
+                gotoxy(0,8);
+                printf("Nome do paciente: %s\n",agenda.nomepaciente);
+                gotoxy(0,9);
+                printf("Nome do medico: %s\n",agenda.nomemedico);
+                gotoxy(0,10);
+                printf("-------------------------------------------------\n");
+            }
+            else
+            {
+                fwrite(&agenda,sizeof(AGENDA),1,temp);//gravando os dados no arquivo temp
+            }            
+        }
+        fclose(arq);
+        fclose(temp);
+        fflush(stdin);
+        gotoxy(0,15);
+        printf("Deseja deletar (s/n)? ");
+        if(getche()=='s')
+        {
+            if(remove("agenda.bin")==0&&rename("tmp_pct.bin","agenda.bin")==0) //verifica se as operacoes foram realizadas com sucesso!
+            {
+                printf("\nOperacao realizada com sucesso!");
+                system("pause > null"); 
+            }
+            else
+            {
+                remove("tmp_pct.bin");//remover o arquivo tmp se a condicao foi "n" na hora de deletar
+                printf("\nAgenda nao foi removido!");
+                system("pause > null");  
+            }
+        }
+        fclose(temp);
+        fclose(arq);
+        getch();
+    }
+}
 #endif
