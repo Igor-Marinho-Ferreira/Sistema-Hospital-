@@ -179,24 +179,16 @@ void menuAgenda()
             sleep(1);
             break;
         case 1:
-            CadastrarAgenda();
+            CadastrarAgendamento();
             system("cls");
-            sleep(1);
             break;
         case 2:
-            Reagendar();
-            system("cls");
-            sleep(1);
             break;
         case 3:
             ListarAgenda();
             system("cls");
-            sleep(1);
             break;
         case 4:
-            RemoverAgenda();
-            system("cls");
-            sleep(1);
             break;
         }
     }
