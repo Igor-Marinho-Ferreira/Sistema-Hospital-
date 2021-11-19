@@ -176,7 +176,7 @@ void ListarPacientes(){
     arquivo = fopen("pacientes.bin","rb");
     arquivo1 = fopen("prontuario.bin","rb");  // leitura 
 
-    if(arquivo == NULL || arquivo1 == NULL){
+    if(arquivo == NULL){
         printf("<ERRO!> Problema na abertura do arquivo!\n");
     }else{
         fflush(stdin);
