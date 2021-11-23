@@ -51,7 +51,7 @@ void desenhaJanela()
 {
 desenha(0,0,126,27);
 gotoxy(50,0);
-printf(" HOSPITAL DOS DOIDAO ");
+printf(" HOSPITAL UNASP ");
 }
 
 void ajustaJanela()

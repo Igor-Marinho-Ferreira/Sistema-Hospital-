@@ -6,6 +6,11 @@ struct agenda
 {
     char nomemedico[50];
     char nomepaciente[50];
+};   
+
+typedef struct agendadata AGENDADATA;
+struct agendadata
+{
     int dia;
     int mes;
     int ano;
@@ -13,11 +18,14 @@ struct agenda
 
 void CadastrarAgendamento(){
     AGENDA agenda;
+    AGENDADATA agendadata;
     int opcao;
     FILE* arquivo;
+    FILE* arquivo1;
 
     arquivo = fopen("agenda.bin","ab");
-    if(arquivo == NULL)
+    arquivo1 = fopen("agendadata.bin","ab");
+    if(arquivo == NULL || arquivo1 == NULL)
     {
         printf("<ERRO!> Problema na abertura do arquivo!\n");
     }else
@@ -48,9 +56,10 @@ void CadastrarAgendamento(){
 
             gotoxy(36,9);
             fflush(stdin);
-            scanf("%d/%d/%d", &agenda.dia,&agenda.mes,&agenda.ano);
+            scanf("%d/%d/%d", &agendadata.dia,&agendadata.mes,&agendadata.ano);
         {
             fwrite(&agenda, sizeof(AGENDA),1,arquivo);
+            fwrite(&agendadata, sizeof(AGENDADATA),1,arquivo1);
             gotoxy(30,20);
             printf(" ---- CADASTRADO COM SUCESSO! DESEJA CONTINUAR CADASTRANDO ? ----- ");
             gotoxy(30,21);
@@ -65,19 +74,24 @@ void CadastrarAgendamento(){
     }
     while(opcao !=0);
     fclose(arquivo);
+    fclose(arquivo1);
 }
 
 void ListarAgenda(){
     AGENDA agenda;
+    AGENDADATA agendadata;
     int opcao,x;
     FILE* arquivo;
+    FILE* arquivo1;
 
     int indice =0;  
+    int indicedata =0;  
     system("cls");
 
     arquivo = fopen("agenda.bin","rb");
+    arquivo1 = fopen("agendadata.bin","rb");
 
-    if(arquivo == NULL){
+    if(arquivo == NULL || arquivo1 == NULL){
         printf("<ERRO!> Problema na abertura do arquivo!\n");
     }else{
         printf("-------------------------------AGENDA-------------------------------\n\n");
@@ -88,12 +102,15 @@ void ListarAgenda(){
             gotoxy(0,x++);
             printf("Nome do paciente: %s\n",agenda.nomepaciente);
             gotoxy(0,x++);
-            printf("Data: %d\n",agenda.dia,agenda.mes,agenda.ano);
+            fread(&agendadata, sizeof(AGENDADATA),1,arquivo1)==1;
+            printf("Data: %d\n",agendadata.dia,agendadata.mes,agendadata.ano);
             gotoxy(0,x++);
             printf("---------------------------------------------------------------------\n\n"); 
             indice++;
+            indicedata++;
         }
         fclose(arquivo);
+        fclose(arquivo1);
         system("pause > null");
     }
 }
@@ -115,8 +132,7 @@ void RemoverAgenda(){
         fflush(stdin);
         printf("Digite o nome do paciente a deletar: ");
         gets(nome);
-        while (fread(&agenda,sizeof(AGENDA),1,arq)==1)
-        {
+        while (fread(&agenda,sizeof(AGENDA),1,arq)==1){
             if(strcmp(nome,agenda.nomepaciente)==0)
             {
                 gotoxy(0,8);
@@ -129,7 +145,7 @@ void RemoverAgenda(){
             else
             {
                 fwrite(&agenda,sizeof(AGENDA),1,temp);//gravando os dados no arquivo temp
-            }            
+            }          
         }
         fclose(arq);
         fclose(temp);
@@ -153,6 +169,53 @@ void RemoverAgenda(){
         fclose(temp);
         fclose(arq);
         getch();
+    }
+}
+
+void Reagendar(){
+    AGENDA agenda;
+    AGENDADATA agendadata;
+    int x, id;
+    FILE* arquivo;
+    FILE* arquivo1;
+
+    int indice =1;
+    system("cls");
+
+    arquivo = fopen("agenda.bin","rb");
+    arquivo1 = fopen("agendadata.bin","rb+");
+
+    if(arquivo == NULL){
+        printf("<ERRO!> Problema na abertura do arquivo!\n");
+    }else{
+        printf("-------------------------------AGENDA-------------------------------\n\n");
+        while(fread(&agenda, sizeof(AGENDA),1,arquivo)){
+            printf("---------------------------------------------------------------------\n");
+            gotoxy(0,x++);
+            printf("Nome do medico: %s\n",agenda.nomemedico);
+            gotoxy(0,x++);
+            printf("Nome do paciente: %s\n",agenda.nomepaciente);
+            gotoxy(0,x++);
+            fread(&agendadata, sizeof(AGENDADATA),1,arquivo1);
+            printf("Data: %d\n",agendadata.dia,agendadata.mes,agendadata.ano);
+            gotoxy(0,x++);
+            printf("---------------------------------------------------------------------\n\n"); 
+            indice++;
+        }
+        printf("Digite o indice o paciente que deseja alterar: ");
+        scanf("%d", &id);
+        getchar();
+        id--;
+        
+        if(id >= 0 && id < indice - 1){
+            printf("Digite a data que deseja mudar: ");
+            scanf("%d/%d/%d", &agendadata.dia,&agendadata.mes,&agendadata.ano);
+            fseek(arquivo1, id * sizeof(AGENDADATA), SEEK_SET);
+            fwrite(&agendadata, sizeof(AGENDADATA),1,arquivo1);
+        }
+        fclose(arquivo);
+        fclose(arquivo1);
+        system("pause > null");
     }
 }
 #endif

@@ -18,8 +18,6 @@ void SelecionarMenuPrincipal(){
         gotoxy(26,10);
         printf("4 - Consultar Prontuarios");
         gotoxy(26,11);
-        printf("5 - Sem ideias");
-        gotoxy(26,12);
         printf("0 - Sair");
         gotoxy(24,20);
         printf("Selecione qual o tipo de operacao deseja realizar: ");
@@ -183,6 +181,8 @@ void menuAgenda()
             system("cls");
             break;
         case 2:
+            Reagendar();
+            system("cls");
             break;
         case 3:
             ListarAgenda();
