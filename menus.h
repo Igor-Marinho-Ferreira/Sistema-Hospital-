@@ -35,8 +35,6 @@ void SelecionarMenuPrincipal(){
             case 3:
                 menuAgenda();
                 break;
-            case 4:
-                break;
         }        
     }while (Opcao != 0);
 }
@@ -73,6 +71,7 @@ void menuPacientes()
         case 0:
             system("cls");
             sleep(1);
+            SelecionarMenuPrincipal();
             break;
         case 1:
             CadastrarPaciente();
@@ -123,6 +122,7 @@ void menuFuncionarios()
         case 0:
             system("cls");
             sleep(1);
+            SelecionarMenuPrincipal();
             break;
         case 1:
             CadastrarFuncionario();
@@ -173,6 +173,7 @@ void menuAgenda()
         case 0:
             system("cls");
             sleep(1);
+            SelecionarMenuPrincipal();
             break;
         case 1:
             CadastrarAgendamento();
