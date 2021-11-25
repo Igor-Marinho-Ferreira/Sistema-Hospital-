@@ -265,47 +265,47 @@ void CriarProntuario(){
             pegaLetraeDigito(prontuario.nome);
             if (strcmp(prontuario.nome,"")==0)break; 
             
-            gotoxy(55,8);
+            gotoxy(32,8);
             fflush(stdin);
             pegaLetraeDigito(prontuario.cpf);
             if (strcmp(prontuario.cpf,"")==0)break; 
 
-            gotoxy(55,9);
+            gotoxy(50,9);
             fflush(stdin);
             pegaLetraeDigito(prontuario.evolucaom);
             if (strcmp(prontuario.evolucaom,"")==0)break; 
 
-            gotoxy(55,10);
+            gotoxy(58,10);
             fflush(stdin);
             pegaLetraeDigito(prontuario.evolucaoe);
             if (strcmp(prontuario.evolucaoe,"")==0)break; 
 
-            gotoxy(45,11);
+            gotoxy(36,11);
             fflush(stdin);
             pegaLetraeDigito(prontuario.exames);
             if (strcmp(prontuario.exames,"")==0)break; 
 
-            gotoxy(55,12);
+            gotoxy(46,12);
             fflush(stdin);
             pegaLetraeDigito(prontuario.raciocinio);
             if (strcmp(prontuario.raciocinio,"")==0)break; 
 
-            gotoxy(55,13);
+            gotoxy(50,13);
             fflush(stdin);
             pegaLetraeDigito(prontuario.hipoteses);
             if (strcmp(prontuario.hipoteses,"")==0)break; 
 
-            gotoxy(55,14);
+            gotoxy(50,14);
             fflush(stdin);
             pegaLetraeDigito(prontuario.diagnostico);
             if (strcmp(prontuario.diagnostico,"")==0)break; 
 
-            gotoxy(55,15);
+            gotoxy(48,15);
             fflush(stdin);
             pegaLetraeDigito(prontuario.prescricoes);
             if (strcmp(prontuario.prescricoes,"")==0)break; 
 
-            gotoxy(55,16);
+            gotoxy(44,16);
             fflush(stdin);
             pegaLetraeDigito(prontuario.resumo);
             if (strcmp(prontuario.resumo,"")==0)break; 
