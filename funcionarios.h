@@ -90,7 +90,7 @@ void ListarFuncionario(){
         printf("<ERRO!> Problema na abertura do arquivo!\n");
     }else{
         fflush(stdin);
-        printf("Digite o usuario do paciente que deseja procurar: ");
+        printf("Digite o usuario do funcionario que deseja procurar: ");
         gets(login);
         while(fread(&funcionario, sizeof(FUNCIONARIO),1,arquivo)==1){
             if(strcmp(login,funcionario.login)==0)
@@ -120,7 +120,7 @@ void RemoverFuncionario(){
         getch();
     }else{
         fflush(stdin);
-        printf("Digite o usuario do paciente a deletar: ");
+        printf("Digite o usuario do funcionario a deletar: ");
         gets(login);
         while (fread(&funcionario,sizeof(FUNCIONARIO),1,arq)==1)
         {

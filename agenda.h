@@ -208,7 +208,7 @@ void Reagendar(){
         id--;
         
         if(id >= 0 && id < indice - 1){
-            printf("Digite a data que deseja mudar: ");
+            printf("Digite a nova data: ");
             scanf("%d/%d/%d", &agendadata.dia,&agendadata.mes,&agendadata.ano);
             fseek(arquivo1, id * sizeof(AGENDADATA), SEEK_SET);
             fwrite(&agendadata, sizeof(AGENDADATA),1,arquivo1);
